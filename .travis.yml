@@ -1,0 +1,21 @@
+language: cpp
+
+script:
+- cmake -Hformatter_lib -Bformatter_lib/_build -DCMAKE_INSTALL_PREFIX=_install
+- cmake --build formatter_lib/_build
+- cmake -Hformatter_ex_lib -Bformatter_ex_lib/_build -DCMAKE_INSTALL_PREFIX=_install
+- cmake --build formatter_ex_lib/_build
+- cmake -Hhello_world_application -Bhello_world_application/_build -DCMAKE_INSTALL_PREFIX=_install
+- cmake --build hello_world_application/_build
+- cmake -Hsolver_application -Bsolver_application/_build -DCMAKE_INSTALL_PREFIX=_install
+- cmake --build solver_application/_build
+
+
+
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
